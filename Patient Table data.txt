@@ -1,0 +1,187 @@
+INSERT INTO Patient (
+    patientId, 
+    name, 
+    dateOfBirth, 
+    address, 
+    contactInfo
+) VALUES (
+    'P01', 
+    Name('Anis','Rahman'), 
+    TO_DATE('1980-05-15', 'YYYY-MM-DD'), 
+    Address('Aftabnagar', 'Dhaka', 'Banglades', '1212'), 
+    ContactInfo(
+        PhoneNumberList('01834672348', '01456789234'), 
+        'anisrahman@.com'
+    )
+);
+
+INSERT INTO Patient (
+    patientId, 
+    name, 
+    dateOfBirth, 
+    address, 
+    contactInfo
+) VALUES (
+    'P02', 
+    Name('Shahriar','Ahmed'), 
+    TO_DATE('2001-05-11', 'YYYY-MM-DD'), 
+    Address('Banasree', 'Dhaka', 'Bangladesh', '1212'), 
+    ContactInfo(
+        PhoneNumberList('01845783456', '01956789234'), 
+        'sahriar@.com'
+    )
+);
+
+
+
+
+
+
+
+INSERT INTO Patient (
+    patientId, 
+    name, 
+    dateOfBirth, 
+    address, 
+    contactInfo
+) VALUES (
+    'P03', 
+    Name('Rakib','Ahmed'), 
+    TO_DATE('2003-05-12', 'YYYY-MM-DD'), 
+    Address('Malibag', 'Dhaka', 'Bangladesh', '1212'), 
+    ContactInfo(
+        PhoneNumberList('01745783456', '01656789234'), 
+        'rakib@.com'
+    )
+);
+
+INSERT INTO Patient (
+    patientId, 
+    name, 
+    dateOfBirth, 
+    address, 
+    contactInfo
+) VALUES (
+    'P04', 
+    Name('Zafor','Ahmed'), 
+    TO_DATE('1995-03-12', 'YYYY-MM-DD'), 
+    Address('Uttra', 'Dhaka', 'Bangladesh', '1212'), 
+    ContactInfo(
+        PhoneNumberList('01745785674', '01756787834'), 
+        'zafor@.com'
+    )
+);
+
+INSERT INTO Patient (
+    patientId, 
+    name, 
+    dateOfBirth, 
+    address, 
+    contactInfo
+) VALUES (
+    'P05', 
+    Name('Arefin','Ahmed'), 
+    TO_DATE('2000-03-12', 'YYYY-MM-DD'), 
+    Address('Badda', 'Dhaka', 'Bangladesh', '1212'), 
+    ContactInfo(
+        PhoneNumberList('01745675674', '01854787834'), 
+        'arefin@.com'
+    )
+);
+
+INSERT INTO Patient (
+    patientId, 
+    name, 
+    dateOfBirth, 
+    address, 
+    contactInfo
+) VALUES (
+    'P06', 
+    Name('Rakib','Hosain'), 
+    TO_DATE('2004-03-12', 'YYYY-MM-DD'), 
+    Address('Mohammadpur', 'Khulna', 'Bangladesh', '1990'), 
+    ContactInfo(
+        PhoneNumberList('01745674574', '01654567834'), 
+        'rakib@.com'
+    )
+);
+
+INSERT INTO Patient (
+    patientId, 
+    name, 
+    dateOfBirth, 
+    address, 
+    contactInfo
+) VALUES (
+    'P07', 
+    Name('Rabiul','Hosain'), 
+    TO_DATE('2001-03-12', 'YYYY-MM-DD'), 
+    Address('Main city', 'Chittagong', 'Bangladesh', '1790'), 
+    ContactInfo(
+        PhoneNumberList('01867644574', '01754677834'), 
+        'rabiul@.com'
+    )
+);
+
+INSERT INTO Patient (
+    patientId, 
+    name, 
+    dateOfBirth, 
+    address, 
+    contactInfo
+) VALUES (
+    'P08', 
+    Name('zakaria','Ahmed'), 
+    TO_DATE('2004-03-12', 'YYYY-MM-DD'), 
+    Address('Main city', 'Chittagong', 'Bangladesh', '1790'), 
+    ContactInfo(
+        PhoneNumberList('01867864574', '01856677834'), 
+        'zakaria@.com'
+    )
+);
+
+INSERT INTO Patient (
+    patientId, 
+    name, 
+    dateOfBirth, 
+    address, 
+    contactInfo
+) VALUES (
+    'P09', 
+    Name('saikat','Biswas'), 
+    TO_DATE('2000-03-12', 'YYYY-MM-DD'), 
+    Address('Boyra', 'Khulna', 'Bangladesh', '1990'), 
+    ContactInfo(
+        PhoneNumberList('01869844574', '01957847834'), 
+        'saikat@.com'
+    )
+);
+
+INSERT INTO Patient (
+    patientId, 
+    name, 
+    dateOfBirth, 
+    address, 
+    contactInfo
+) VALUES (
+    'P10', 
+    Name('Sudipta','Shuva'), 
+    TO_DATE('2000-03-11', 'YYYY-MM-DD'), 
+    Address('Boyra', 'Khulna', 'Bangladesh', '1990'), 
+    ContactInfo(
+        PhoneNumberList('01966744574', '01959847834'), 
+        'sudiptashuva@.com'
+    )
+);
+
+
+
+
+SELECT 
+    p.patientId,p.name.first_name AS first_name,p.name.last_name AS last_name,
+    p.dateOfBirth,p.address.street AS street,
+    p.address.city AS city,p.address.state AS state,p.address.zipCode AS zipCode,
+    t1.COLUMN_VALUE AS phoneNumber,p.contactInfo.email AS email
+FROM 
+    Patient p,
+    TABLE(p.contactInfo.phoneNumbers) t1;

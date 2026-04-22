@@ -1,0 +1,78 @@
+Query: 
+-- 1. List all patients' full names and their contact email addresses
+SELECT p.name.first_name || ' ' || p.name.last_name AS full_name, 
+ p.contactInfo.email
+FROM Patient p;
+
+
+
+--2. Find all medications with their stock quantity that have less than 90 units in stock.
+SELECT mws.medicationId, mws.name, mws.stockQuantity
+FROM MedicationWithStock mws
+WHERE mws.stockQuantity < 90;
+
+
+--3. Retrieve all orders made by a specific patient identified by patientId 'P03', including 
+the total amount of each order.;
+SELECT o.orderId, o.orderDate, o.status, owa.totalAmount
+FROM OrderTable o
+JOIN OrderWithTotalAmount owa ON o.orderId = owa.orderId
+WHERE o.patientId = 'P03';
+
+
+
+--4. Find all doctors who specialize in 'Cardiology' along with their contact phone numbers.
+SELECT d.name.first_name || ' ' || d.name.last_name AS full_name, 
+ pn.COLUMN_VALUE AS phone_number
+FROM Doctor d,
+ TABLE(d.contactInfo.phoneNumbers) pn
+WHERE d.specialization = 'Cardiology';
+
+
+– 5.List all medications prescribed in a specific prescription identified by prescriptionId 
+'P04'
+SELECT m.name, mo.quantity
+FROM Prescription p
+JOIN TABLE(p.medications) mo ON p.prescriptionId = 'P04'
+JOIN Medication m ON mo.medicationId = m.medicationId;
+
+
+
+--6. Calculate the total number of medications in the inventory and their combined total 
+price
+SELECT COUNT(*) AS total_medications, 
+ SUM(m.price * i.quantity) AS total_value
+FROM Inventory i
+JOIN Medication m ON i.medicationId = m.medicationId;
+
+
+– 7. Find the top 5 most expensive medications along with their price and manufacturer.
+SELECT m.name, m.price, m.manufacturer
+FROM Medication m
+ORDER BY m.price DESC
+FETCH FIRST 5 ROWS ONLY;
+
+--8. Retrieve all patients who have not placed any orders.
+SELECT p.patientId, p.name.first_name || ' ' || p.name.last_name AS full_name
+FROM Patient p
+LEFT JOIN OrderTable o ON p.patientId = o.patientId
+WHERE o.orderId IS NULL;
+
+
+– 9. List all expired medications in the inventory.iryDate < SYSDATE;
+SELECT m.name, i.expiryDate, i.quantity
+FROM Inventory i
+JOIN Medication m ON i.medicationId = m.medicationId
+WHERE i.expiryDate < SYSDATE;
+
+
+--10 .Generate a report of all orders, including the patient name, order date, status, and 
+total amount 
+SELECT o.orderId, 
+ p.name.first_name || ' ' || p.name.last_name AS patient_name, 
+ o.orderDate, o.status, owa.totalAmount
+FROM OrderTable o
+JOIN Patient p ON o.patientId = p.patientId
+JOIN OrderWithTotalAmount owa ON o.orderId = owa.orderId;
+
+

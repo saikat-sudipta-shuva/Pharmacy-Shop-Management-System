@@ -1,0 +1,193 @@
+INSERT INTO Prescription (
+    prescriptionId,
+    pdate, 
+    doctorId,
+    patientId,
+    medications
+) VALUES (
+    'P01',
+    TO_DATE('2024-05-31', 'YYYY-MM-DD'),
+    'D02', 
+    'P01', 
+    MedicationList(
+        MedicationRef('M01', 14), 
+        MedicationRef('M04', 6)
+    )
+);
+
+
+
+
+INSERT INTO Prescription (
+    prescriptionId,
+    pdate, 
+    doctorId,
+    patientId,
+    medications
+) VALUES (
+    'P02',
+    TO_DATE('2024-05-31', 'YYYY-MM-DD'),
+    'D01', 
+    'P02', 
+    MedicationList(
+        MedicationRef('M07', 14), 
+        MedicationRef('M04', 12),
+        MedicationRef('M05', 12)
+    )
+);
+
+
+INSERT INTO Prescription (
+    prescriptionId,
+    pdate, 
+    doctorId,
+    patientId,
+    medications
+) VALUES (
+    'P03',
+    TO_DATE('2024-05-31', 'YYYY-MM-DD'),
+    'D03', 
+    'P04', 
+    MedicationList(
+        MedicationRef('M02', 14), 
+        MedicationRef('M01', 12),
+        MedicationRef('M05', 12)
+    )
+);
+
+INSERT INTO Prescription (
+    prescriptionId,
+    pdate, 
+    doctorId,
+    patientId,
+    medications
+) VALUES (
+    'P04',
+    TO_DATE('2024-05-31', 'YYYY-MM-DD'),
+    'D04', 
+    'P03', 
+    MedicationList(
+        MedicationRef('M09', 14), 
+        MedicationRef('M10', 12),
+        MedicationRef('M07', 12)
+    )
+);
+
+
+INSERT INTO Prescription (
+    prescriptionId,
+    pdate, 
+    doctorId,
+    patientId,
+    medications
+) VALUES (
+    'P05',
+    TO_DATE('2024-05-31', 'YYYY-MM-DD'),
+    'D05', 
+    'P06', 
+    MedicationList(
+        MedicationRef('M03', 16), 
+        MedicationRef('M04', 02),
+        MedicationRef('M06', 24)
+    )
+);
+
+
+INSERT INTO Prescription (
+    prescriptionId,
+    pdate, 
+    doctorId,
+    patientId,
+    medications
+) VALUES (
+    'P06',
+    TO_DATE('2024-05-31', 'YYYY-MM-DD'),
+    'D06', 
+    'P05', 
+    MedicationList(
+        MedicationRef('M02', 6), 
+        MedicationRef('M06', 02),
+        MedicationRef('M08', 14)
+    )
+);
+
+INSERT INTO Prescription (
+    prescriptionId,
+    pdate, 
+    doctorId,
+    patientId,
+    medications
+) VALUES (
+    'P07',
+    TO_DATE('2024-05-31', 'YYYY-MM-DD'),
+    'D08', 
+    'P07', 
+    MedicationList(
+        MedicationRef('M08', 16), 
+        MedicationRef('M05', 22),
+        MedicationRef('M03', 14)
+    )
+);
+
+
+
+INSERT INTO Prescription (
+    prescriptionId,
+    pdate, 
+    doctorId,
+    patientId,
+    medications
+) VALUES (
+    'P08',
+    TO_DATE('2024-05-31', 'YYYY-MM-DD'),
+    'D07', 
+    'P08', 
+    MedicationList(
+        MedicationRef('M02', 16), 
+        MedicationRef('M01', 22)
+
+    )
+);
+
+INSERT INTO Prescription (
+    prescriptionId,
+    pdate, 
+    doctorId,
+    patientId,
+    medications
+) VALUES (
+    'P09',
+    TO_DATE('2024-05-31', 'YYYY-MM-DD'),
+    'D10', 
+    'P09', 
+    MedicationList(
+        MedicationRef('M02', 16), 
+        MedicationRef('M09', 2),
+        MedicationRef('M07', 12),
+        MedicationRef('M04', 22)
+
+    )
+);
+
+INSERT INTO Prescription (
+    prescriptionId,
+    pdate, 
+    doctorId,
+    patientId,
+    medications
+) VALUES (
+    'P10',
+    TO_DATE('2024-05-31', 'YYYY-MM-DD'),
+    'D09', 
+    'P10', 
+    MedicationList(
+        MedicationRef('M06', 16), 
+        MedicationRef('M09', 22),
+        MedicationRef('M01', 2),
+        MedicationRef('M10', 12)
+
+    )
+);
+
+
+

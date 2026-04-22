@@ -1,0 +1,158 @@
+INSERT INTO Medication (
+    medicationId,
+    name,
+    description,
+    manufacturer,
+    price
+) VALUES (
+    'M01',
+    'Aspirin',
+    'Pain reliever and anti-inflammatory',
+    'Incepta',
+     5.90
+);
+
+
+INSERT INTO Medication (
+    medicationId,
+    name,
+    description,
+    manufacturer,
+    price
+) VALUES (
+    'M02',
+    'Napa',
+    'Headace and fever reliver',
+    'Incepta',
+     6.90
+);
+
+INSERT INTO Medication (
+    medicationId,
+    name,
+    description,
+    manufacturer,
+    price
+) VALUES (
+    'M03',
+    'Etorix',
+    'Pain killer',
+    'Square',
+     17.00
+);
+
+INSERT INTO Medication (
+    medicationId,
+    name,
+    description,
+    manufacturer,
+    price
+) VALUES (
+    'M04',
+    'Monas',
+    'Allergy reliver',
+    'Square',
+     16.00
+);
+
+INSERT INTO Medication (
+    medicationId,
+    name,
+    description,
+    manufacturer,
+    price
+) VALUES (
+    'M04',
+    'Monas',
+    'Allergy reliver',
+    'Square',
+     16.00
+);
+
+INSERT INTO Medication (
+    medicationId,
+    name,
+    description,
+    manufacturer,
+    price
+) VALUES (
+    'M05',
+    'Miolux',
+    'Pain killer',
+    'SKF',
+     16.00
+);
+
+INSERT INTO Medication (
+    medicationId,
+    name,
+    description,
+    manufacturer,
+    price
+) VALUES (
+    'M06',
+    'Orbain',
+    'Blood pressure',
+    'SKF',
+     200.00
+);
+
+INSERT INTO Medication (
+    medicationId,
+    name,
+    description,
+    manufacturer,
+    price
+) VALUES (
+    'M07',
+    'Surgel',
+    'Gastric medicine',
+    'square',
+     90.00
+);
+
+INSERT INTO Medication (
+    medicationId,
+    name,
+    description,
+    manufacturer,
+    price
+) VALUES (
+    'M08',
+    'Esoral',
+    'Gastric medicine',
+    'Labaid',
+     190.00
+);
+
+INSERT INTO Medication (
+    medicationId,
+    name,
+    description,
+    manufacturer,
+    price
+) VALUES (
+    'M09',
+    'Optimox Myciten',
+    'Eye drop',
+    'square',
+     390.00
+);
+
+INSERT INTO Medication (
+    medicationId,
+    name,
+    description,
+    manufacturer,
+    price
+) VALUES (
+    'M10',
+    'Omidon',
+    'Gastric syrup',
+    'SKF',
+     200.00
+);
+
+
+
+

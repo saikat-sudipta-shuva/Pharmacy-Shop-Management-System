@@ -1,0 +1,170 @@
+INSERT INTO Doctor (
+    doctorId, 
+    name, 
+    specialization, 
+    contactInfo
+) VALUES (
+    'D01', 
+    Name('Dr.Arafat','Azim'), 
+    'Neurology', 
+    ContactInfo(
+        PhoneNumberList('01783457892'), 
+        'dr.arafat@gmail.com'
+    )
+);
+
+INSERT INTO Doctor (
+    doctorId, 
+    name, 
+    specialization, 
+    contactInfo
+) VALUES (
+    'D02', 
+    Name('Dr.Tuhin','Shuvra'), 
+    'Cardiology', 
+    ContactInfo(
+        PhoneNumberList('01783557895'), 
+        'dr.tuhin@gmail.com'
+    )
+);
+
+INSERT INTO Doctor (
+    doctorId, 
+    name, 
+    specialization, 
+    contactInfo
+) VALUES (
+    'D03', 
+    Name('Dr.Fazle','Rabbi'), 
+    'Cardiology', 
+    ContactInfo(
+        PhoneNumberList('01945782345'), 
+        'dr.fazlerabbi@gmail.com'
+    )
+);
+
+INSERT INTO Doctor (
+    doctorId, 
+    name, 
+    specialization, 
+    contactInfo
+) VALUES (
+    'D04', 
+    Name('Dr.Mofizur','Rahman'), 
+    'Medicine', 
+    ContactInfo(
+        PhoneNumberList('01805893932','01783647823'), 
+        'dr.rahmani@gmail.com'
+    )
+);
+INSERT INTO Doctor (
+    doctorId, 
+    name, 
+    specialization, 
+    contactInfo
+) VALUES (
+    'D05', 
+    Name('Dr. Md. Mahmudul','Hasan'), 
+    'Neurology', 
+    ContactInfo(
+        PhoneNumberList('01673939321','01783643283'), 
+        'dr.mahmudul@gmail.com'
+    )
+);
+
+
+INSERT INTO Doctor (
+    doctorId, 
+    name, 
+    specialization, 
+    contactInfo
+) VALUES (
+    'D06', 
+    Name('Dr. Md. Rakibul','Hasan'), 
+    'Urologist', 
+    ContactInfo(
+        PhoneNumberList('01873939421','01783563282'), 
+        'dr.rakibul@gmail.com'
+    )
+);
+
+
+INSERT INTO Doctor (
+    doctorId, 
+    name, 
+    specialization, 
+    contactInfo
+) VALUES (
+    'D07', 
+    Name('Dr. Abullah','Al Mamun'), 
+    'Cardiologist', 
+    ContactInfo(
+        PhoneNumberList('01656738234','01983643584'), 
+        'dr.abdullah@gmail.com'
+    )
+);
+
+INSERT INTO Doctor (
+    doctorId, 
+    name, 
+    specialization, 
+    contactInfo
+) VALUES (
+    'D08', 
+    Name('Dr. Md Asif','Hossain'), 
+    'Medicine', 
+    ContactInfo(
+        PhoneNumberList('01674567321','01784567283'), 
+        'dr.asif@gmail.com'
+    )
+);
+
+
+
+
+
+
+
+INSERT INTO Doctor (
+    doctorId, 
+    name, 
+    specialization, 
+    contactInfo
+) VALUES (
+    'D09', 
+    Name('Dr. Sami','Ahmed'), 
+    'Medicine', 
+    ContactInfo(
+        PhoneNumberList('01673935678','01784689364'), 
+        'prof.drsami.com'
+    )
+);
+INSERT INTO Doctor (
+    doctorId, 
+    name, 
+    specialization, 
+    contactInfo
+) VALUES (
+    'D10', 
+    Name('Dr. wasif','Chisty'), 
+    'Urologist', 
+    ContactInfo(
+        PhoneNumberList('01667834562','01784647364'), 
+        'dr.wasif.com'
+    )
+);
+
+
+
+
+
+SELECT 
+    d.doctorId,
+    d.name.first_name,
+    d.name.last_name,
+    d.specialization,
+    p1.COLUMN_VALUE AS phoneNumber,
+    d.ContactInfo.email
+FROM 
+    Doctor d,
+    TABLE(d.contactInfo.phoneNumbers) p1;

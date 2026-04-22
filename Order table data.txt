@@ -1,0 +1,192 @@
+INSERT INTO OrderTable (
+    orderId,
+    patientId,
+    orderDate,
+    status,
+    medications
+) VALUES (
+    'O01',
+    'P01',  
+    TO_DATE('2024-05-31', 'YYYY-MM-DD'),
+    'Processing',
+    MedicationOrderList(
+        MedicationOrder('M01', 2),
+        MedicationOrder('M02', 3)   
+    )
+);
+
+INSERT INTO OrderTable (
+    orderId,
+    patientId,
+    orderDate,
+    status,
+    medications
+) VALUES (
+    'O02',
+    'P02',  
+    TO_DATE('2024-04-03', 'YYYY-MM-DD'),
+    'Delivered',
+    MedicationOrderList(
+        MedicationOrder('M01', 4),
+        MedicationOrder('M02', 30)   
+    )
+);
+
+INSERT INTO OrderTable (
+    orderId,
+    patientId,
+    orderDate,
+    status,
+    medications
+) VALUES (
+    'O03',
+    'P03',  
+    TO_DATE('2024-05-03', 'YYYY-MM-DD'),
+    'Cancelled',
+    MedicationOrderList(
+        MedicationOrder('M04', 14),
+        MedicationOrder('M06', 20)   
+    )
+);
+
+INSERT INTO OrderTable (
+    orderId,
+    patientId,
+    orderDate,
+    status,
+    medications
+) VALUES (
+    'O04',
+    'P04',  
+    TO_DATE('2024-05-23', 'YYYY-MM-DD'),
+    'Delivered',
+    MedicationOrderList(
+        MedicationOrder('M04', 14),
+        MedicationOrder('M02', 20),
+        MedicationOrder('M04', 20)      
+    )
+);
+
+INSERT INTO OrderTable (
+    orderId,
+    patientId,
+    orderDate,
+    status,
+    medications
+) VALUES (
+    'O05',
+    'P05',  
+    TO_DATE('2024-06-23', 'YYYY-MM-DD'),
+    'Pending',
+    MedicationOrderList(
+        MedicationOrder('M10', 14),
+        MedicationOrder('M09', 20),
+        MedicationOrder('M08', 20)      
+    )
+);
+
+
+INSERT INTO OrderTable (
+    orderId,
+    patientId,
+    orderDate,
+    status,
+    medications
+) VALUES (
+    'O06',
+    'P06',  
+    TO_DATE('2024-06-17', 'YYYY-MM-DD'),
+    'Pending',
+    MedicationOrderList(
+        MedicationOrder('M07', 14),
+        MedicationOrder('M06', 20)   
+    )
+);
+
+
+INSERT INTO OrderTable (
+    orderId,
+    patientId,
+    orderDate,
+    status,
+    medications
+) VALUES (
+    'O07',
+    'P07',  
+    TO_DATE('2024-06-17', 'YYYY-MM-DD'),
+    'Pending',
+    MedicationOrderList(
+        MedicationOrder('M05', 4),
+        MedicationOrder('M04', 24),
+        MedicationOrder('M07', 14),
+        MedicationOrder('M09', 20)   
+    )
+);
+
+
+INSERT INTO OrderTable (
+    orderId,
+    patientId,
+    orderDate,
+    status,
+    medications
+) VALUES (
+    'O08',
+    'P08',  
+    TO_DATE('2024-03-18', 'YYYY-MM-DD'),
+    'Delivered',
+    MedicationOrderList(
+        MedicationOrder('M05', 14),
+        MedicationOrder('M02', 34)
+         
+    )
+);
+
+INSERT INTO OrderTable (
+    orderId,
+    patientId,
+    orderDate,
+    status,
+    medications
+) VALUES (
+    'O09',
+    'P09',  
+    TO_DATE('2024-04-08', 'YYYY-MM-DD'),
+    'Cancelled',
+    MedicationOrderList(
+        MedicationOrder('M05', 15),
+        MedicationOrder('M08', 24),
+        MedicationOrder('M02', 34)
+         
+    )
+);
+
+
+INSERT INTO OrderTable (
+    orderId,
+    patientId,
+    orderDate,
+    status,
+    medications
+) VALUES (
+    'O10',
+    'P10',  
+    TO_DATE('2024-06-08', 'YYYY-MM-DD'),
+    'Pending',
+    MedicationOrderList(
+        MedicationOrder('M01', 15),
+        MedicationOrder('M03', 24),
+        MedicationOrder('M02', 34)
+         
+    )
+);
+
+
+
+SELECT
+    o.orderId,o.patientId,o.orderDate,o.status,
+    t1.medicationId,
+    t1.quantity
+FROM
+    OrderTable o,
+    TABLE(o.medications) t1;

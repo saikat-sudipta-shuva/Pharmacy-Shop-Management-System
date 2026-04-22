@@ -1,0 +1,59 @@
+
+SELECT 
+    d.doctorId,
+    d.name.first_name,
+    d.name.last_name,
+    d.specialization,
+    p1.COLUMN_VALUE AS phoneNumber,
+    d.ContactInfo.email
+FROM 
+    Doctor d,
+    TABLE(d.contactInfo.phoneNumbers) p1;
+
+
+-------------------------------------------------------------------------------------
+SELECT 
+    p.patientId,p.name.first_name AS first_name,p.name.last_name AS last_name,
+    p.dateOfBirth,p.address.street AS street,
+    p.address.city AS city,p.address.state AS state,p.address.zipCode AS zipCode,
+    t1.COLUMN_VALUE AS phoneNumber,p.contactInfo.email AS email
+FROM 
+    Patient p,
+    TABLE(p.contactInfo.phoneNumbers) t1;
+
+----------------------------------------------------------------------------------------
+SELECT
+    inventoryId,
+    medicationId,
+    quantity,
+    expiryDate
+FROM
+    Inventory;
+
+---------------------------------------------------------------------------------------
+SELECT
+    medicationId,
+    name,
+    description,
+    manufacturer,
+    price
+FROM
+    Medication;
+
+----------------------------------------------------------------------------------------
+SELECT
+    o.orderId,o.patientId,o.orderDate,o.status,
+    t1.medicationId,
+    t1.quantity
+FROM
+    OrderTable o,
+    TABLE(o.medications) t1;
+
+-----------------------------------------------------------------------------------------
+SELECT
+    p.prescriptionId,p.pdate,p.doctorId,p.patientId,
+    t.medicationId,t.quantity
+FROM
+    Prescription p,TABLE(p.medications) t;
+
+

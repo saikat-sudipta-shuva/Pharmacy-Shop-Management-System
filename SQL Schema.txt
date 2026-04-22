@@ -1,0 +1,125 @@
+CREATE OR REPLACE TYPE PhoneNumberList AS TABLE OF VARCHAR2(15);
+/
+
+CREATE OR REPLACE TYPE Name AS OBJECT (
+  first_name VARCHAR2(50),
+  last_name VARCHAR2(50)
+
+);
+/
+CREATE OR REPLACE TYPE MedicationOrder AS OBJECT (
+    medicationId VARCHAR2(10),
+    quantity NUMBER
+);
+
+/
+CREATE OR REPLACE TYPE MedicationRef AS OBJECT (
+    medicationId VARCHAR2(10),
+    quantity NUMBER
+);
+/
+CREATE OR REPLACE TYPE MedicationList AS TABLE OF MedicationRef;
+/
+CREATE TYPE MedicationOrderList AS TABLE OF MedicationOrder;
+/
+CREATE OR REPLACE TYPE Address AS OBJECT (
+    street VARCHAR2(100),
+    city VARCHAR2(50),
+    state VARCHAR2(50),
+    zipCode VARCHAR2(10)
+);
+/
+CREATE OR REPLACE TYPE ContactInfo AS OBJECT (
+    phoneNumbers PhoneNumberList,
+    email VARCHAR2(50)
+);
+/
+CREATE TABLE Patient (
+    patientId VARCHAR2(10) PRIMARY KEY,
+    name Name, -- Composite
+    dateOfBirth DATE NULL, -- Optional
+    address Address NULL, -- Composite and Optional
+    contactInfo ContactInfo NULL -- Composite and Optional
+) NESTED TABLE contactInfo.phoneNumbers STORE AS patient_phone_numbers_nt;
+/
+CREATE TABLE Doctor (
+    doctorId VARCHAR2(10) PRIMARY KEY,
+    name Name, -- Composite
+    specialization VARCHAR2(50) NULL, -- Optional
+    contactInfo ContactInfo NULL -- Composite and Optional
+) NESTED TABLE contactInfo.phoneNumbers STORE AS doctor_phone_numbers_nt;
+/
+CREATE TABLE Medication (
+    medicationId VARCHAR2(10) PRIMARY KEY,
+    name VARCHAR2(50) UNIQUE,
+    description VARCHAR2(255) NULL, -- Optional
+    manufacturer VARCHAR2(50) NULL, -- Optional
+    price NUMBER(10, 2)
+);
+/
+CREATE TABLE Inventory (
+    inventoryId VARCHAR2(10) PRIMARY KEY,
+    medicationId VARCHAR2(10) REFERENCES Medication(medicationId),
+    quantity NUMBER,
+    expiryDate DATE
+);
+/
+
+CREATE TABLE Prescription (
+    prescriptionId VARCHAR2(10) PRIMARY KEY,
+    pdate DATE,
+    doctorId VARCHAR2(10) REFERENCES Doctor(doctorId),
+    patientId VARCHAR2(10) REFERENCES Patient(patientId),
+    medications MedicationList -- Multivalued (nested table)
+) NESTED TABLE medications STORE AS medications_nt;
+/
+CREATE TABLE OrderTable (
+    orderId VARCHAR2(10) PRIMARY KEY,
+    patientId VARCHAR2(10) REFERENCES Patient(patientId),
+    orderDate DATE,
+    status VARCHAR2(20),
+    medications MedicationOrderList
+) NESTED TABLE medications STORE AS order_medications_nt;
+
+/
+
+CREATE VIEW MedicationWithStock AS
+SELECT 
+    m.medicationId,
+    m.name,
+    m.description,
+    m.manufacturer,
+    m.price,
+    COALESCE(SUM(i.quantity), 0) AS stockQuantity
+FROM 
+    Medication m
+LEFT JOIN 
+    Inventory i ON m.medicationId = i.medicationId
+GROUP BY 
+    m.medicationId,
+    m.name,
+    m.description,
+    m.manufacturer,
+    m.price;
+/
+CREATE VIEW OrderWithTotalAmount AS
+SELECT 
+    o.orderId,
+    o.patientId,
+    o.orderDate,
+    o.status,
+    (
+        SELECT COALESCE(SUM(m.price * om.quantity), 0)
+        FROM TABLE(o.medications) om
+        JOIN Medication m ON om.medicationId = m.medicationId
+    ) AS totalAmount
+FROM 
+    OrderTable o;
+
+
+
+
+
+
+
+

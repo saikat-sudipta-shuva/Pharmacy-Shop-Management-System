@@ -1,0 +1,160 @@
+INSERT INTO Doctor (
+    doctorId, 
+    name, 
+    specialization, 
+    contactInfo
+) VALUES (
+    'D01', 
+    Name('Dr.Arafat','Azim'), 
+    'Neurology', 
+    ContactInfo(
+        PhoneNumberList('01783457892'), 
+        'dr.arafat@gmail.com'
+    )
+);
+
+SELECT 
+    d.doctorId,
+    d.name.first_name,
+    d.name.last_name,
+    d.specialization,
+    p1.COLUMN_VALUE AS phoneNumber,
+    d.ContactInfo.email
+FROM 
+    Doctor d,
+    TABLE(d.contactInfo.phoneNumbers) p1;
+
+---------------------------------------------------------------------------------------
+
+INSERT INTO Patient (
+    patientId, 
+    name, 
+    dateOfBirth, 
+    address, 
+    contactInfo
+) VALUES (
+    'P01', 
+    Name('Anis','Rahman'), 
+    TO_DATE('1980-05-15', 'YYYY-MM-DD'), 
+    Address('Aftabnagar', 'Dhaka', 'Banglades', '1212'), 
+    ContactInfo(
+        PhoneNumberList('01834672348', '01456789234'), 
+        'anisrahman@.com'
+    )
+);
+
+
+SELECT 
+    p.patientId,p.name.first_name AS first_name,p.name.last_name AS last_name,
+    p.dateOfBirth,p.address.street AS street,
+    p.address.city AS city,p.address.state AS state,p.address.zipCode AS zipCode,
+    t1.COLUMN_VALUE AS phoneNumber,p.contactInfo.email AS email
+FROM 
+    Patient p,
+    TABLE(p.contactInfo.phoneNumbers) t1;
+
+
+----------------------------------------------------------------------------------------
+
+INSERT INTO Prescription (
+    prescriptionId,
+    pdate, 
+    doctorId,
+    patientId,
+    medications
+) VALUES (
+    'P01',
+    TO_DATE('2024-05-31', 'YYYY-MM-DD'),
+    'D02', 
+    'P01', 
+    MedicationList(
+        MedicationRef('M01', 14), 
+        MedicationRef('M04', 6)
+    )
+);
+
+
+
+SELECT
+    p.prescriptionId,p.pdate,p.doctorId,p.patientId,
+    t.medicationId,t.quantity
+FROM
+    Prescription p,TABLE(p.medications) t;
+
+---------------------------------------------------------------------------------------
+
+INSERT INTO Inventory (
+    inventoryId,
+    medicationId,
+    quantity,
+    expiryDate
+) VALUES (
+    'I01',
+    'M01',
+     100,
+     TO_DATE('2025-12-31', 'YYYY-MM-DD')
+);
+
+
+SELECT
+    inventoryId,
+    medicationId,
+    quantity,
+    expiryDate
+FROM
+    Inventory;
+---------------------------------------------------------------------------------------
+
+INSERT INTO Medication (
+    medicationId,
+    name,
+    description,
+    manufacturer,
+    price
+) VALUES (
+    'M01',
+    'Aspirin',
+    'Pain reliever and anti-inflammatory',
+    'Incepta',
+     5.90
+);
+
+
+SELECT
+    medicationId,
+    name,
+    description,
+    manufacturer,
+    price
+FROM
+    Medication;
+
+---------------------------------------------------------------------------
+
+INSERT INTO OrderTable (
+    orderId,
+    patientId,
+    orderDate,
+    status,
+    medications
+) VALUES (
+    'O01',
+    'P01',  
+    TO_DATE('2024-05-31', 'YYYY-MM-DD'),
+    'Processing',
+    MedicationOrderList(
+        MedicationOrder('M01', 2),
+        MedicationOrder('M02', 3)   
+    )
+);
+
+
+SELECT
+    o.orderId,o.patientId,o.orderDate,o.status,
+    t1.medicationId,
+    t1.quantity
+FROM
+    OrderTable o,
+    TABLE(o.medications) t1;
+
+
